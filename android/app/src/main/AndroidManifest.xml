@@ -1,10 +1,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.goingsmobile">
+    package="tech.vision8.goings">
 
     <!-- The INTERNET permission is required for development. Specifically,
          flutter needs it to communicate with the running application
          to allow setting breakpoints, to provide hot reload, etc.
     -->
+    <!--
+        vision8 note: Needed during development and debugging, otherwise I get:
+        "Observatory server failed to start" with
+        "SocketException: Failed to create server socket (OS Error: Permission denied, errno = 13), address = 127.0.0.1, port = 0"
+     -->
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <!-- io.flutter.app.FlutterApplication is an android.app.Application that
@@ -14,7 +19,7 @@
          FlutterApplication and put your custom class here. -->
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="goings_mobile"
+        android:label="Goings"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

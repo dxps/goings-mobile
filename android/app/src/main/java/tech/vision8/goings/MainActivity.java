@@ -1,4 +1,4 @@
-package com.example.goingsmobile;
+package tech.vision8.goings;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

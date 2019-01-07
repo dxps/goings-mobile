@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 //
 /// "Sunny and Calm" theme.
 /// (#49 at https://learn.canva.com/learn/website-color-schemes/)
+//  Colors 50-900 were generated using http://mcg.mbitson.com
 //
 class Theme1 {
   //
