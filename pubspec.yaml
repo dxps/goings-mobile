@@ -1,18 +1,16 @@
 name: goings
 description: Goings - A Task and Time Tracking system.
 
-# The following defines the version and build number for your application.
-# A version number is three numbers separated by dots, like 1.2.43
-# followed by an optional build number separated by a +.
-# Both the version and the builder number may be overridden in flutter
-# build by specifying --build-name and --build-number, respectively.
-# Read more about versioning at semver.org.
 version: 1.0.0+1
 
 environment:
   sdk: ">=2.0.0-dev.68.0 <3.0.0"
 
+# ____________________________________________________________________
+#
+
 dependencies:
+
   flutter:
     sdk: flutter
 
@@ -20,7 +18,15 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
 
+  rxdart: ^0.20.0
+
+  logging: ^0.11.3+2
+
+# ____________________________________________________________________
+#
+
 dev_dependencies:
+
   flutter_test:
     sdk: flutter
 
@@ -67,6 +73,7 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.io/custom-fonts/#from-packages
+
   fonts:
     - family: Nunito
       fonts:
@@ -86,4 +93,21 @@ flutter:
           weight: 800
         - asset: _assets/fonts/nunito/Nunito-Black.ttf
           weight: 900
+    - family: Montserrat
+      fonts:
+        - asset: _assets/fonts/montserrat/Montserrat-Thin.ttf
+          weight: 200
+        - asset: _assets/fonts/montserrat/Montserrat-Light.ttf
+          weight: 300
+        - asset: _assets/fonts/montserrat/Montserrat-Regular.ttf
+          weight: 400
+        - asset: _assets/fonts/montserrat/Montserrat-Bold.ttf
+          weight: 700
+        - asset: _assets/fonts/montserrat/Montserrat-Black.ttf
+          weight: 900
 
+# ____________________________________________________________________
+#
+
+# For information on the generic Dart part of this file, see the
+# following page: https://www.dartlang.org/tools/pub/pubspec
