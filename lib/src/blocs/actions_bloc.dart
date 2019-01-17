@@ -28,8 +28,7 @@ class ActionsBloc {
   //
   dispose() {
     //
-    // _actionsFetcher.close();
-    _actionsFetcher.drain();
+    _actionsFetcher.close();
   }
 }
 
