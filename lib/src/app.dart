@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 
 import 'themes/theme1.dart';
-import 'screens/home_screen.dart';
+import 'screens/home_scr.dart';
+import 'screens/mgmt_tags_scr.dart';
 
 //
 class App extends StatelessWidget {
@@ -22,17 +23,29 @@ class App extends StatelessWidget {
         canvasColor: Theme1.morningSkyColor(),
         primarySwatch: Theme1.honeyShades(),
         fontFamily: 'Nunito',
+        dividerColor: Theme1.honeyColor(),
+        splashColor: Theme1.mistColor(),
       ),
       debugShowCheckedModeBanner: false,
-      onGenerateRoute: routes,
+      onGenerateRoute: _generatedRoutes,
+      routes: _namedRoutes(context),
     );
   }
 
   //
-  Route routes(RouteSettings rs) {
+  Map<String, Widget Function(BuildContext)> _namedRoutes(BuildContext context) {
+    //
+    return {
+      '/': (ctx) => HomeScreen(),
+      '/manage-tags': (ctx) => ManageTagsScreen(),
+    };
+  }
+
+  //
+  Route _generatedRoutes(RouteSettings rs) {
     //
     return MaterialPageRoute(builder: (context) {
-      return Home();
+      return HomeScreen();
     });
   }
 
