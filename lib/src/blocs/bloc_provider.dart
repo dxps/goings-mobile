@@ -7,7 +7,8 @@ abstract class BlocBase {
 }
 
 /// BlocProvider is a generic, reusable, and healthy approach
-/// for implementing a bloc provider component.
+/// (it frees memory through dispose() of StatefulWidget)
+/// for implementing a bloc provider as an ancestor component.
 class BlocProvider<T extends BlocBase> extends StatefulWidget {
   //
 
