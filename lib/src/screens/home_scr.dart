@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+
 import '../themes/theme1.dart';
+import '../blocs/bloc_provider.dart';
+import '../blocs/actions_bloc.dart';
 
 //
 class HomeScreen extends StatelessWidget {
@@ -18,7 +21,7 @@ class HomeScreen extends StatelessWidget {
 
   Widget _buildBody() {
     return Center(
-        child: Text('Home Screen'),
+        child: Text('Home Screen', ),
       );
   }
 
@@ -34,6 +37,7 @@ class HomeScreen extends StatelessWidget {
           icon: Icon(Icons.add),
           onPressed: () {
             print('[HomeScreen] add ...');
+            // TODO: use ActionBloc
           },
         )
       ],

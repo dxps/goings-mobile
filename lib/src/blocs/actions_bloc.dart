@@ -1,19 +1,28 @@
 import 'package:rxdart/rxdart.dart';
 import 'package:logging/logging.dart';
 
+import 'bloc_provider.dart';
 import '../resources/ActionsRepo.dart';
 import '../models/action_model.dart';
 
 //
-class ActionsBloc {
+class ActionsBloc implements BlocBase {
   //
 
   final _repo = ActionsRepo();
+
+  // actions fetcher (controller) and its stream exposed
   final _actionsFetcher = PublishSubject<ActionModel>();
+  Observable<ActionModel> get allActions => _actionsFetcher.stream;
+
+  final _cmdCtrl = PublishSubject();
+  void Function(dynamic) get getActions => _cmdCtrl.sink.add;
 
   final Logger _log = Logger('ActionsBloc');
 
-  Observable<ActionModel> get allActions => _actionsFetcher.stream;
+  ActionsBloc() {
+    _cmdCtrl.stream.listen((_) => fetchAllActions());
+  }
 
   //
   fetchAllActions() async {
@@ -31,6 +40,3 @@ class ActionsBloc {
     _actionsFetcher.close();
   }
 }
-
-/// the single instance to be used by UI screen(s)
-final actionsBloc = ActionsBloc();
