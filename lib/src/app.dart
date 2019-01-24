@@ -23,8 +23,12 @@ class App extends StatelessWidget {
         canvasColor: Theme1.morningSkyColor(),
         primarySwatch: Theme1.honeyShades(),
         fontFamily: 'Nunito',
-        dividerColor: Theme1.honeyColor(),
-        splashColor: Theme1.mistColor(),
+        textTheme: TextTheme(
+          body1: TextStyle(fontSize: 16.0),
+          body2: TextStyle(fontSize: 14.0),
+        ),
+        dividerColor: Theme1.mistColor(),
+        splashColor: Theme1.honeyColor(),
       ),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: _generatedRoutes,
@@ -54,7 +58,7 @@ class App extends StatelessWidget {
     //
     Logger.root.level = Level.ALL;
     Logger.root.onRecord.listen((LogRecord rec) {
-      print('${rec.time} ${rec.loggerName} ${rec.message}');
+      print('${rec.time} [${rec.loggerName}] ${rec.message}');
     });
   }
 

@@ -2,7 +2,7 @@ import 'package:rxdart/rxdart.dart';
 import 'package:logging/logging.dart';
 
 import 'bloc_provider.dart';
-import '../resources/ActionsRepo.dart';
+import '../resources/actions_repo.dart';
 import '../models/action_model.dart';
 
 //
@@ -12,31 +12,32 @@ class ActionsBloc implements BlocBase {
   final _repo = ActionsRepo();
 
   // actions fetcher (controller) and its stream exposed
-  final _actionsFetcher = PublishSubject<ActionModel>();
-  Observable<ActionModel> get allActions => _actionsFetcher.stream;
+  final _actionsFetcher = PublishSubject<List<ActionModel>>();
+  Observable<List<ActionModel>> get actionsStream => _actionsFetcher.stream;
 
   final _cmdCtrl = PublishSubject();
-  void Function(dynamic) get getActions => _cmdCtrl.sink.add;
+  void Function() get getActions => () => _cmdCtrl.sink.add(null);
 
   final Logger _log = Logger('ActionsBloc');
 
   ActionsBloc() {
-    _cmdCtrl.stream.listen((_) => fetchAllActions());
+    _cmdCtrl.stream.listen((_) => _fetchAllActions());
   }
 
   //
-  fetchAllActions() async {
+  _fetchAllActions() async {
     //
     List<ActionModel> actions = await _repo.retrieveActions();
-    actions.forEach((action) {
-      _log.finer('fetchAllActions > Adding action \'${action.name}\' to sink');
-      _actionsFetcher.sink.add(action);
-    });
+    _log.finer('_fetchAllActions > Got ${actions.length} actions from repo.');
+    _actionsFetcher.sink.add(actions);
   }
 
   //
   dispose() {
     //
+    _cmdCtrl.close();
     _actionsFetcher.close();
   }
+
+  //
 }

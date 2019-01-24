@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../themes/theme1.dart';
 import '../blocs/bloc_provider.dart';
 import '../blocs/actions_bloc.dart';
+import '../widgets/actions_list.dart';
 
 //
 class HomeScreen extends StatelessWidget {
@@ -13,19 +14,21 @@ class HomeScreen extends StatelessWidget {
     //
 
     return Scaffold(
-      appBar: _buildAppBar(),
+      appBar: _buildAppBar(context),
       body: _buildBody(),
       drawer: _buildSideDrawer(context),
     );
   }
 
   Widget _buildBody() {
-    return Center(
-        child: Text('Home Screen', ),
-      );
+    //
+    return ActionsList();
+    // return Center(
+    //     child: Text('Home Screen', ),
+    //   );
   }
 
-  PreferredSizeWidget _buildAppBar() {
+  PreferredSizeWidget _buildAppBar(BuildContext context) {
     //
     return AppBar(
       title: Text('Goings'),
@@ -36,8 +39,7 @@ class HomeScreen extends StatelessWidget {
         IconButton(
           icon: Icon(Icons.add),
           onPressed: () {
-            print('[HomeScreen] add ...');
-            // TODO: use ActionBloc
+            BlocProvider.of<ActionsBloc>(context).getActions();
           },
         )
       ],
