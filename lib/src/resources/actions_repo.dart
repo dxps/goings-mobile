@@ -13,11 +13,6 @@ class ActionsRepo {
 
   Future<List<ActionModel>> retrieveActions() async {
     //
-    // Static list for testing.
-    // return [
-    //   ActionModel('Home to Office', tags: ['commute']),
-    //   ActionModel('Office to Home', tags: ['commute']),
-    // ];
     return dataSource.fetchActions();
   }
 

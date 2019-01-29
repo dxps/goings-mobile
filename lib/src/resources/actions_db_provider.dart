@@ -33,7 +33,8 @@ class ActionsDbProvider implements ActionsDataSource {
             id           INTEGER PRIMARY KEY,
             name         TEXT,
             description  TEXT,
-            tags         TEXT
+            tags         TEXT,
+            state        TEXT
           )
         """);
       },

@@ -17,13 +17,18 @@ class ActionModel {
   /// (Optional List of) Tags of the action.
   List<String> _tags;
 
+  /// State of the action.
+  String _state;
+
   //
-  ActionModel(String name, {String description: '', List<String> tags}) {
+  ActionModel(String name, {String description: '', List<String> tags,
+      state: 'O'}) {
     //
     this._id = Uuid().v1();
     this._name = name;
     this._description = description;
-    this._tags = tags;
+    this._tags = tags ?? [];
+    this._state = state;
   }
 
   //
@@ -33,6 +38,7 @@ class ActionModel {
     this._name = row['name'];
     this._description = row['description'];
     this._tags = jsonDecode(row['tags']);
+    this._state = jsonDecode(row['state']);
   }
 
   //
@@ -42,7 +48,8 @@ class ActionModel {
       "id": _id,
       "name": _name,
       "description": _description,
-      "tags": jsonEncode(tags)
+      "tags": jsonEncode(tags),
+      "state": _state
     };
   }
 
@@ -53,6 +60,8 @@ class ActionModel {
   String get description => _description;
 
   List<String> get tags => _tags;
+
+  String get state => _state;
 
   /// Get the String version of this action instance in JSON format.
   String toJsonString() {
