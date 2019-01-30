@@ -22,7 +22,10 @@ class ActionsList extends StatelessWidget {
         } else if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         } else {
-          return Container();
+          return Padding(
+            padding: EdgeInsets.all(10),
+            child: Center(child: Text('No data', style: TextStyle(fontStyle: FontStyle.italic))),
+          );
         }
       },
     );

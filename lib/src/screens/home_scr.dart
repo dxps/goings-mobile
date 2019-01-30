@@ -9,25 +9,31 @@ import '../widgets/actions_list.dart';
 class HomeScreen extends StatelessWidget {
   //
 
+  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey = new GlobalKey<RefreshIndicatorState>();
+
   @override
   Widget build(BuildContext context) {
     //
 
     return Scaffold(
       appBar: _buildAppBar(context),
-      body: _buildBody(),
+      body: _buildBody(context),
       drawer: _buildSideDrawer(context),
     );
   }
 
-  Widget _buildBody() {
+  //
+  Widget _buildBody(BuildContext context) {
     //
-    return ActionsList();
-    // return Center(
-    //     child: Text('Home Screen', ),
-    //   );
+    return RefreshIndicator(
+      key: _refreshIndicatorKey,
+      onRefresh: () => _refreshActionsList(context),
+      child: ActionsList(),
+    );
+    // return ActionsList();
   }
 
+  //
   PreferredSizeWidget _buildAppBar(BuildContext context) {
     //
     return AppBar(
@@ -37,16 +43,17 @@ class HomeScreen extends StatelessWidget {
       elevation: 0.0,
       actions: <Widget>[
         IconButton(
-          icon: Icon(Icons.add),
+          icon: Icon(Icons.refresh),
           onPressed: () {
-            BlocProvider.of<ActionsBloc>(context).getActions();
+            _refreshActionsList(context);
           },
         )
       ],
     );
   }
 
-  _buildSideDrawer(BuildContext context) {
+  //
+  Drawer _buildSideDrawer(BuildContext context) {
     //
     return Drawer(
       child: ListView(
@@ -78,6 +85,14 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  //
+  Future<void> _refreshActionsList(BuildContext context) async {
+    //
+    _refreshIndicatorKey.currentState.show();
+    BlocProvider.of<ActionsBloc>(context).getActions();
+    // await new Future.delayed(Duration(seconds: 2));
   }
 
   //

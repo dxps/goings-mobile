@@ -10,6 +10,9 @@ import 'actions_repo.dart';
 //
 class ActionsDbProvider implements ActionsDataSource {
   //
+
+  static const String _dbFile = "goings.db";
+
   Database _db;
 
   final Logger _log = Logger('ActionsDbProvider');
@@ -22,7 +25,7 @@ class ActionsDbProvider implements ActionsDataSource {
   void init() async {
     //
     Directory docsDir = await getApplicationDocumentsDirectory();
-    final path = join(docsDir.path, "goings.db");
+    final path = join(docsDir.path, _dbFile);
     _log.fine('Opening db file $path ');
     _db = await openDatabase(
       path,
@@ -30,13 +33,14 @@ class ActionsDbProvider implements ActionsDataSource {
       onCreate: (Database newDb, int version) {
         newDb.execute("""
           CREATE TABLE actions (
-            id           INTEGER PRIMARY KEY,
+            id           TEXT PRIMARY KEY,
             name         TEXT,
             description  TEXT,
             tags         TEXT,
             state        TEXT
           )
         """);
+        _log.info('DB file $_dbFile has been created.');
       },
     );
   }
