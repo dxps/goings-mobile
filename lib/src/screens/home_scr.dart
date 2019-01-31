@@ -30,7 +30,6 @@ class HomeScreen extends StatelessWidget {
       onRefresh: () => _refreshActionsList(context),
       child: ActionsList(),
     );
-    // return ActionsList();
   }
 
   //
@@ -45,7 +44,7 @@ class HomeScreen extends StatelessWidget {
         IconButton(
           icon: Icon(Icons.refresh),
           onPressed: () {
-            _refreshActionsList(context);
+            _refreshIndicatorKey.currentState.show();
           },
         )
       ],
@@ -88,11 +87,12 @@ class HomeScreen extends StatelessWidget {
   }
 
   //
-  Future<void> _refreshActionsList(BuildContext context) async {
+  Future<Null> _refreshActionsList(BuildContext context) async {
     //
-    _refreshIndicatorKey.currentState.show();
     BlocProvider.of<ActionsBloc>(context).getActions();
+    // simulating a delay
     // await new Future.delayed(Duration(seconds: 2));
+    return null;
   }
 
   //

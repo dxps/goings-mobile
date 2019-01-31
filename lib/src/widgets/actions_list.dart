@@ -13,6 +13,7 @@ class ActionsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //
+    _log.finer('_build > context.widget.key=${context.widget.key}');
     var actionsBloc = BlocProvider.of<ActionsBloc>(context);
     return StreamBuilder<List<ActionModel>>(
       stream: actionsBloc.actionsStream,
