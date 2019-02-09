@@ -15,3 +15,6 @@ This project is a Flutter application.
 - `themes` includes all theme related settings and components
 - `widgets` contains widgets that are being used in some of the screens
 
+## ToDos
+
+- try using the simpler bloc design

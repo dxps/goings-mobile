@@ -24,8 +24,8 @@ class App extends StatelessWidget {
         primarySwatch: Theme1.honeyShades(),
         fontFamily: 'Nunito',
         textTheme: TextTheme(
-          body1: TextStyle(fontSize: 16.0),
-          body2: TextStyle(fontSize: 14.0),
+          body1: TextStyle(fontSize: 18.0),
+          body2: TextStyle(fontSize: 20.0),
         ),
         dividerColor: Theme1.mistColor(),
         splashColor: Theme1.honeyColor(),
