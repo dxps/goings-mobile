@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
-import '../blocs/bloc_provider.dart';
-import '../blocs/actions_bloc.dart';
-import '../models/action_model.dart';
 
-//
-class ActionsList extends StatelessWidget {
+import '../actions/actions_bloc.dart';
+
+///
+/// The ActionsList widget.
+///
+class ActionsListWidget extends StatelessWidget {
   //
 
   final Logger _log = Logger('ActionsList');
 
+  //
   @override
   Widget build(BuildContext context) {
     //
@@ -30,8 +32,10 @@ class ActionsList extends StatelessWidget {
         }
       },
     );
+    //
   }
 
+  ///
   Widget _buildBody(List<ActionModel> actions) {
     //
     _log.finer('_buildBody > ${actions.length} actions provided.');
@@ -44,6 +48,7 @@ class ActionsList extends StatelessWidget {
         itemBuilder: (context, idx) => Text('${actions[idx].name}'),
       ),
     );
+    //
   }
 
   //
