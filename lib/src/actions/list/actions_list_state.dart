@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import '../models/action_model.dart';
+import '../action_model.dart';
 
 ///
 abstract class ActionsListState extends Equatable {}

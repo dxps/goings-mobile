@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'actions/actions_list_bloc.dart';
-import 'themes/theme1.dart';
-import 'screens/home_scr.dart';
-import 'screens/mgmt_tags_scr.dart';
+import './actions/list/actions_list_bloc.dart';
+import './themes/theme1.dart';
+import './screens/home_scr.dart';
+import './screens/mgmt_tags_scr.dart';
 
 ///
 ///

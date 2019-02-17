@@ -1,7 +1,9 @@
 import 'dart:convert';
 import 'package:uuid/uuid.dart';
 
-//
+///
+/// The model of an Action.
+///
 class ActionModel {
   //
 

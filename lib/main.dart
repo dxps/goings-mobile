@@ -4,7 +4,9 @@ import 'package:bloc/bloc.dart';
 
 import 'src/app.dart';
 
-//
+///
+///   STARTUP
+///
 void main() {
   //
 
@@ -12,10 +14,13 @@ void main() {
   runApp(
     App(),
   );
-  
+
   //
 }
 
+///
+///
+///
 class SimpleBlocDelegate extends BlocDelegate {
   //
 
@@ -24,6 +29,11 @@ class SimpleBlocDelegate extends BlocDelegate {
   @override
   void onTransition(Transition transition) {
     _log.fine('onTransition > ${transition.toString()}');
+  }
+
+  @override
+  void onError(Object error, StackTrace stacktrace) {
+    _log.fine('onError > ${error.toString()}');
   }
 
   //

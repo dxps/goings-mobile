@@ -7,10 +7,10 @@ export './actions_list_event.dart';
 import './actions_list_state.dart';
 export './actions_list_state.dart';
 
-import '../actions/actions_repo.dart';
+import '../actions_repo.dart';
 
-import '../models/action_model.dart';
-export '../models/action_model.dart';
+import '../action_model.dart';
+export '../action_model.dart';
 
 ///
 /// The BLoC of ActionsList.
@@ -34,7 +34,7 @@ class ActionsListBloc extends Bloc<ActionsListEvent, ActionsListState> {
     if (event is ActionsListLoadingEvent) {
       _log.finer('Handling event ${event.toString()}');
       List<ActionModel> actions = await _actionsRepo.retrieveActions();
-      _log.finer('_fetchAllActions > Got ${actions.length} actions from repo.');
+      _log.finer('Got ${actions.length} actions from repo.');
       yield ActionsListStateLoaded(actions);
     }
 

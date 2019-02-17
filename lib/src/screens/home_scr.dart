@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../themes/theme1.dart';
-import '../actions/actions_list_bloc.dart';
-import '../actions/actions_list_event.dart';
-import '../actions/actions_list_wdg.dart';
+import '../actions/list/actions_list.dart';
 
 ///
 /// The home screen.
