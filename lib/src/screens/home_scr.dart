@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../themes/theme1.dart';
-import '../blocs/bloc_provider.dart';
-import '../blocs/actions_bloc.dart';
-import '../widgets/actions_list.dart';
+import '../actions/actions_list_bloc.dart';
+import '../actions/actions_list_event.dart';
+import '../actions/actions_list_wdg.dart';
 
-//
+///
+/// The home screen.
+///
 class HomeScreen extends StatelessWidget {
   //
 
-  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey = new GlobalKey<RefreshIndicatorState>();
+  // final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey = new GlobalKey<RefreshIndicatorState>();
 
   @override
   Widget build(BuildContext context) {
@@ -22,17 +25,13 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  //
+  /// Building the Scaffold's body.
   Widget _buildBody(BuildContext context) {
     //
-    return RefreshIndicator(
-      key: _refreshIndicatorKey,
-      onRefresh: () => _refreshActionsList(context),
-      child: ActionsList(),
-    );
+    return ActionsListWidget();
   }
 
-  //
+  /// Building the AppBar.
   PreferredSizeWidget _buildAppBar(BuildContext context) {
     //
     return AppBar(
@@ -43,15 +42,14 @@ class HomeScreen extends StatelessWidget {
       actions: <Widget>[
         IconButton(
           icon: Icon(Icons.refresh),
-          onPressed: () {
-            _refreshIndicatorKey.currentState.show();
-          },
+          onPressed: () => _refreshActionsList(context),
         )
       ],
     );
+    //
   }
 
-  //
+  /// Build the side Drawer.
   Drawer _buildSideDrawer(BuildContext context) {
     //
     return Drawer(
@@ -84,15 +82,14 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
     );
+    //
   }
 
   //
-  Future<Null> _refreshActionsList(BuildContext context) async {
+  Future<void> _refreshActionsList(BuildContext context) async {
     //
-    BlocProvider.of<ActionsBloc>(context).getActions();
-    // simulating a delay
-    // await new Future.delayed(Duration(seconds: 2));
-    return null;
+    BlocProvider.of<ActionsListBloc>(context).dispatch(ActionsListLoadingEvent());
+    //
   }
 
   //

@@ -1,11 +1,15 @@
 import 'package:rxdart/rxdart.dart';
 import 'package:logging/logging.dart';
 
-import 'bloc_provider.dart';
-import '../resources/actions_repo.dart';
-import '../models/action_model.dart';
+import '../blocs/bloc_provider.dart';
+export '../blocs/bloc_provider.dart';
 
-//
+import '../actions/actions_repo.dart';
+
+import '../models/action_model.dart';
+export '../models/action_model.dart';
+
+///
 class ActionsBloc implements BlocBase {
   //
 

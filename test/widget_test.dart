@@ -7,15 +7,21 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:logging/logging.dart';
+
+import 'package:bloc/bloc.dart';
 
 import 'package:goings/src/app.dart';
 
 //
 void main() {
   //
-  
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+
+  testWidgets('TBD', (WidgetTester tester) async {
+    //
+
     // Build our app and trigger a frame.
+    BlocSupervisor().delegate = SimpleBlocDelegate();
     await tester.pumpWidget(App());
 
     // Verify that our counter starts at 0.
@@ -30,4 +36,19 @@ void main() {
     expect(find.text('0'), findsNothing);
     expect(find.text('1'), findsOneWidget);
   });
+
+  //
+}
+
+class SimpleBlocDelegate extends BlocDelegate {
+  //
+
+  static final Logger _log = Logger('SimpleBlocDelegate');
+
+  @override
+  void onTransition(Transition transition) {
+    _log.fine('onTransition > ${transition.toString()}');
+  }
+
+  //
 }
