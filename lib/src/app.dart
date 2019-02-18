@@ -8,7 +8,7 @@ import './screens/home_scr.dart';
 import './screens/mgmt_tags_scr.dart';
 
 ///
-///
+/// App startup.
 ///
 class App extends StatefulWidget {
   //
@@ -22,15 +22,19 @@ class App extends StatefulWidget {
 }
 
 ///
-///
+/// App's startup state.
 ///
 class AppState extends State<App> {
   //
 
-  final ActionsListBloc actionsListBloc = ActionsListBloc();
+  static final Logger _log = Logger('AppState');
+
+  ActionsListBloc actionsListBloc;
 
   AppState() {
     _initLogging();
+    this.actionsListBloc = ActionsListBloc();
+    _log.finer('build > Created ActionsListBloc #${actionsListBloc.hashCode}');
   }
 
   @override
@@ -83,4 +87,14 @@ class AppState extends State<App> {
       print('${rec.time} [${rec.loggerName}] ${rec.message}');
     });
   }
+
+  @override
+  void dispose() {
+    //
+    actionsListBloc.dispose();
+    super.dispose();
+    //
+  }
+
+  //
 }

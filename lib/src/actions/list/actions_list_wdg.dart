@@ -17,9 +17,11 @@ class ActionsListWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     //
     ActionsListBloc actionsListBloc = BlocProvider.of<ActionsListBloc>(context);
+    _log.finer('build > Found ActionsListBloc #${actionsListBloc.hashCode}');
     return BlocBuilder<ActionsListEvent, ActionsListState>(
       bloc: actionsListBloc,
       builder: (BuildContext context, ActionsListState state) {
+        _log.fine('build > state:${state.toString()}');
         if (state is ActionsListStateInitially) {
           return Padding(
             padding: EdgeInsets.all(10),
@@ -27,7 +29,6 @@ class ActionsListWidget extends StatelessWidget {
           );
         }
         if (state is ActionsListStateLoaded) {
-          _log.fine('build > state is ${state.toString()} | doing _buildList');
           return _buildList(state.actions);
         }
       },
@@ -38,7 +39,7 @@ class ActionsListWidget extends StatelessWidget {
   ///
   Widget _buildList(List<ActionModel> actions) {
     //
-    _log.finer('_buildList > ${actions.length} actions received.');
+    //_log.finer('_buildList > ${actions.length} actions received.');
     if (actions.length == 0) {
       return Center(child: Text('No action exists.', style: TextStyle(fontStyle: FontStyle.italic)));
     }

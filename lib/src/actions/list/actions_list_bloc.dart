@@ -31,10 +31,10 @@ class ActionsListBloc extends Bloc<ActionsListEvent, ActionsListState> {
   Stream<ActionsListState> mapEventToState(ActionsListState currentState, ActionsListEvent event) async* {
     //
 
+    _log.finer('Handling event ${event.toString()}');
     if (event is ActionsListLoadingEvent) {
-      _log.finer('Handling event ${event.toString()}');
       List<ActionModel> actions = await _actionsRepo.retrieveActions();
-      _log.finer('Got ${actions.length} actions from repo.');
+      _log.finer('Retrieved ${actions.length} actions.');
       yield ActionsListStateLoaded(actions);
     }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:logging/logging.dart';
 
 import '../themes/theme1.dart';
 import '../actions/list/actions_list.dart';
@@ -10,12 +11,14 @@ import '../actions/list/actions_list.dart';
 class HomeScreen extends StatelessWidget {
   //
 
+  static final Logger _log = Logger('HomeScreen');
+
   // final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey = new GlobalKey<RefreshIndicatorState>();
 
   @override
   Widget build(BuildContext context) {
     //
-
+    _log.finer('build > started');
     return Scaffold(
       appBar: _buildAppBar(context),
       body: _buildBody(context),
