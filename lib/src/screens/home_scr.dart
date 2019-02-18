@@ -29,7 +29,20 @@ class HomeScreen extends StatelessWidget {
   /// Building the Scaffold's body.
   Widget _buildBody(BuildContext context) {
     //
-    return ActionsListWidget();
+    ActionsListBloc actionsListBloc = BlocProvider.of<ActionsListBloc>(context);
+    return BlocBuilder<ActionsListEvent, ActionsListState>(
+      bloc: actionsListBloc,
+      builder: (BuildContext context, ActionsListState state) {
+        _log.fine('build > builder > state:${state.toString()}');
+        if (state is ActionsListStateInitially) {
+          return ActionsListWidget();
+        }
+        if (state is ActionsListStateLoaded) {
+          return ActionsListWidget(actions: state.actions);
+        }
+      },
+    );
+    //
   }
 
   /// Building the AppBar.

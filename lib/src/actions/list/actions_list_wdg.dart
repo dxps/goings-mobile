@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import './actions_list_bloc.dart';
 
@@ -12,27 +11,24 @@ class ActionsListWidget extends StatelessWidget {
 
   static final Logger _log = Logger('ActionsListWidget');
 
+  final List<ActionModel> actions;
+
+  const ActionsListWidget({Key key, this.actions}) : super(key: key);
+
   //
   @override
   Widget build(BuildContext context) {
     //
-    ActionsListBloc actionsListBloc = BlocProvider.of<ActionsListBloc>(context);
-    _log.finer('build > Found ActionsListBloc #${actionsListBloc.hashCode}');
-    return BlocBuilder<ActionsListEvent, ActionsListState>(
-      bloc: actionsListBloc,
-      builder: (BuildContext context, ActionsListState state) {
-        _log.fine('build > state:${state.toString()}');
-        if (state is ActionsListStateInitially) {
-          return Padding(
-            padding: EdgeInsets.all(10),
-            child: Center(child: Text('Initial state', style: TextStyle(fontStyle: FontStyle.italic))),
-          );
-        }
-        if (state is ActionsListStateLoaded) {
-          return _buildList(state.actions);
-        }
-      },
-    );
+    _log.finer('build > actions:$actions');
+    if (actions == null) {
+      return Padding(
+        padding: EdgeInsets.all(10),
+        child: Center(child: Text('Initial state', style: TextStyle(fontStyle: FontStyle.italic))),
+      );
+    } else {
+      return _buildList(actions);
+    }
+
     //
   }
 
