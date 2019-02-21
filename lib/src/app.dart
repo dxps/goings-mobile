@@ -6,6 +6,7 @@ import './actions/list/actions_list_bloc.dart';
 import './themes/theme1.dart';
 import './screens/home_scr.dart';
 import './screens/mgmt_tags_scr.dart';
+import './screens/unknown_route_scr.dart';
 
 ///
 /// App startup.
@@ -31,10 +32,15 @@ class AppState extends State<App> {
 
   ActionsListBloc actionsListBloc;
 
+  HomeScreen homeScreen;
+  ManageTagsScreen manageTagsScreen;
+
   AppState() {
     _initLogging();
     this.actionsListBloc = ActionsListBloc();
     _log.finer('build > Created ActionsListBloc #${actionsListBloc.hashCode}');
+    this.homeScreen = HomeScreen();
+    this.manageTagsScreen = ManageTagsScreen();
   }
 
   @override
@@ -57,8 +63,8 @@ class AppState extends State<App> {
           splashColor: Theme1.honeyColor(),
         ),
         debugShowCheckedModeBanner: false,
-        onGenerateRoute: _generatedRoutes,
         routes: _namedRoutes(context),
+        onUnknownRoute: _unknownRoute,
       ),
     );
     //
@@ -68,18 +74,22 @@ class AppState extends State<App> {
   Map<String, Widget Function(BuildContext)> _namedRoutes(BuildContext context) {
     //
     return {
-      '/': (ctx) => HomeScreen(),
-      '/manage-tags': (ctx) => ManageTagsScreen(),
+      '/': (ctx) => homeScreen,
+      '/manage-tags': (ctx) => manageTagsScreen,
     };
   }
 
-  Route _generatedRoutes(RouteSettings rs) {
+  //
+  Route _unknownRoute(RouteSettings rs) {
     //
     return MaterialPageRoute(builder: (context) {
-      return HomeScreen();
+      _log.finer('_unknownRoute > name: ${rs.name}');
+      return UnknownRouteScreen();
     });
+    //
   }
 
+  //
   void _initLogging() {
     //
     Logger.root.level = Level.ALL;

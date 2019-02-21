@@ -20,22 +20,13 @@ class ActionsListWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     //
     _log.finer('build > actions:$actions');
-    if (actions == null) {
-      return Padding(
-        padding: EdgeInsets.all(10),
-        child: Center(child: Text('Initial state', style: TextStyle(fontStyle: FontStyle.italic))),
-      );
-    } else {
-      return _buildList(actions);
-    }
-
+    return _buildList(actions);
     //
   }
 
   ///
   Widget _buildList(List<ActionModel> actions) {
     //
-    //_log.finer('_buildList > ${actions.length} actions received.');
     if (actions.length == 0) {
       return Center(child: Text('No action exists.', style: TextStyle(fontStyle: FontStyle.italic)));
     }

@@ -6,10 +6,10 @@ import '../action_model.dart';
 abstract class ActionsListState extends Equatable {}
 
 ///
-class ActionsListStateInitially extends ActionsListState {
+class ActionsListStateInitial extends ActionsListState {
 
   @override
-  String toString() => 'ActionsListStateInitially';
+  String toString() => 'ActionsListStateInitial';
 
   //
 }

@@ -33,10 +33,17 @@ class HomeScreen extends StatelessWidget {
     return BlocBuilder<ActionsListEvent, ActionsListState>(
       bloc: actionsListBloc,
       builder: (BuildContext context, ActionsListState state) {
-        _log.fine('build > builder > state:${state.toString()}');
-        if (state is ActionsListStateInitially) {
-          return ActionsListWidget();
+        _log.fine('_buildBody > blocbuilder > state:${state.toString()}');
+        if (state is ActionsListStateInitial) {
+          return Padding(
+            padding: EdgeInsets.all(10),
+            child: Center(child: Text('Initial state', style: TextStyle(fontStyle: FontStyle.italic))),
+          );
         }
+        if (state is ActionsListStateLoading) {
+          return Center(child: CircularProgressIndicator());
+        }
+
         if (state is ActionsListStateLoaded) {
           return ActionsListWidget(actions: state.actions);
         }
@@ -81,16 +88,16 @@ class HomeScreen extends StatelessWidget {
             title: Text('Tags'),
             onTap: () {
               Navigator.of(context).pop(); // close the side drawer
-              return Navigator.pushNamed(context, '/manage-tags');
+              Navigator.pushNamed(context, '/manage-tags');
             },
           ),
           Divider(),
           ListTile(
             leading: Icon(Icons.fastfood),
-            title: Text('Something TBD'),
+            title: Text('TBD'),
             onTap: () {
               Navigator.of(context).pop(); // close the side drawer
-              return Navigator.pushNamed(context, '/manage-tbd');
+              Navigator.pushNamed(context, '/manage-tbd');
             },
           ),
         ],

@@ -28,7 +28,8 @@ class SimpleBlocDelegate extends BlocDelegate {
 
   @override
   void onTransition(Transition transition) {
-    _log.fine('onTransition > ${transition.toString()}');
+    // This is a great place to add bloc-specific logging/analytics.
+    //_log.fine('onTransition > ${transition.toString()}');
   }
 
   @override

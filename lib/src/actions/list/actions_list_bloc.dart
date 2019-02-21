@@ -24,7 +24,7 @@ class ActionsListBloc extends Bloc<ActionsListEvent, ActionsListState> {
 
   //
   @override
-  ActionsListState get initialState => ActionsListStateInitially();
+  ActionsListState get initialState => ActionsListStateInitial();
 
   //
   @override
@@ -33,6 +33,7 @@ class ActionsListBloc extends Bloc<ActionsListEvent, ActionsListState> {
 
     _log.finer('Handling event ${event.toString()}');
     if (event is ActionsListLoadingEvent) {
+      yield ActionsListStateLoading();
       List<ActionModel> actions = await _actionsRepo.retrieveActions();
       _log.finer('Retrieved ${actions.length} actions.');
       yield ActionsListStateLoaded(actions);
