@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:logging/logging.dart';
+
 import '../themes/theme1.dart';
 
 //
 class ManageTagsScreen extends StatelessWidget {
   //
+
+  static final Logger _log = Logger('ManageTagsScreen');
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +31,7 @@ class ManageTagsScreen extends StatelessWidget {
   //
   Widget _buildBody() {
     //
+    _log.fine('_buildBody > started.');
     return Column(children: <Widget>[
 
     ],);
